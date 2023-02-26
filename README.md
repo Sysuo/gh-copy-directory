@@ -21,7 +21,9 @@ Github Action でディレクトリをコピーしてコミット・プッシュ
 - [actions/checkout: Action for checking out a repo](https://github.com/actions/checkout)
 - [Create Branch · Actions · GitHub Marketplace](https://github.com/marketplace/actions/create-branch)
 
+# 環境設定
 ![スクリーンショット 2023-02-27 0 26 15](https://user-images.githubusercontent.com/3732626/221420031-c1bf019a-d3be-4e46-9b63-7a6479d6ecf3.png)
+![スクリーンショット 2023-02-27 1 10 27](https://user-images.githubusercontent.com/3732626/221422227-4d4dd635-d0a8-4a7c-8329-83b6e7d610ab.png)
 
 ## 文字列操作
 - [ランダムな文字列を生成](https://www.rasukarusan.com/entry/2019/03/29/224418)
