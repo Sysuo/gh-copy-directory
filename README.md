@@ -20,6 +20,7 @@ Github Action でディレクトリをコピーしてコミット・プッシュ
 - [Variables \- GitHub Docs](https://docs.github.com/ja/actions/learn-github-actions/variables)
 - [actions/checkout: Action for checking out a repo](https://github.com/actions/checkout)
 - [Create Branch · Actions · GitHub Marketplace](https://github.com/marketplace/actions/create-branch)
+- [Create Pull Request · Actions · GitHub Marketplace](https://github.com/marketplace/actions/create-pull-request)
 
 # 環境設定
 ![スクリーンショット 2023-02-27 0 26 15](https://user-images.githubusercontent.com/3732626/221420031-c1bf019a-d3be-4e46-9b63-7a6479d6ecf3.png)
