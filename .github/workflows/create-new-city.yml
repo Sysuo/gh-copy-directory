@@ -60,13 +60,19 @@ jobs:
 
       # DBパスワード ランダムで生成 (アルファベット・数値のみ)、置換
       - name: "db-password"
-        run: sed -e "s/#db-password#/${password}/" ${{ inputs.city_id }}/profile_4.php > ${{ inputs.city_id }}/profile.php
+        run: sed -e "s/#db-password#/${password}/" ${{ inputs.city_id }}/profile_4.php > ${{ inputs.city_id }}/profile_5.php
         env:
           password: cat /dev/urandom | base64 | fold -w 256 | head -n 1 | sed -e 's/[^[0-9a-zA-Z]//g' | fold -w $password_length | head -n 1
 
+      # Copy Right
+      - name: copy right
+        run: sed -e "s/#db-password#/${copy-right}/" ${{ inputs.city_id }}/profile_5.php > ${{ inputs.city_id }}/profile.php
+        env:
+          copy_right: echo "${{ inputs.city_id }}" | awk -F '-' '{ for(i=1; i<=NF; i++) {printf toupper(substr($i,1,1)) substr($i,2) " " }} END {print ""}'
+
       # 後始末
       - name: tear down
-        run: rm ${{ inputs.city_id }}/profile_1.php ${{ inputs.city_id }}/profile_2.php ${{ inputs.city_id }}/profile_3.php ${{ inputs.city_id }}/profile_4.php
+        run: rm ${{ inputs.city_id }}/profile_1.php ${{ inputs.city_id }}/profile_2.php ${{ inputs.city_id }}/profile_3.php ${{ inputs.city_id }}/profile_4.php ${{ inputs.city_id }}/profile_5.php
 
       - name: Create new Branch, commit, push
         env:
