@@ -74,18 +74,11 @@ jobs:
       - name: tear down
         run: rm ${{ inputs.city_id }}/profile_1.php ${{ inputs.city_id }}/profile_2.php ${{ inputs.city_id }}/profile_3.php ${{ inputs.city_id }}/profile_4.php ${{ inputs.city_id }}/profile_5.php
 
-      - name: Create new Branch, commit, push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_ACTION_TOKEN }}
-        run: |
-          echo $branch_name
-          git config user.name 'Atsuko Kurosawa'
-          git config user.email 'a-kurosawa@mi-labo.co.jp'
-          git checkout -b $branch_name
-          git add ./${{ inputs.city_id }}/
-          git commit -m "新規構築 ${{ inputs.city_name }}"
-          git push origin $branch_name
-
       - name: Create Pull Request
-        id: cpr
         uses: peter-evans/create-pull-request@v4
+        with:
+          committer: "Atsuko Kurosawa<a-kurosawa@mi-labo.co.jp>"
+          commit-message: "新規構築 ${{ inputs.city_name }}"
+          title: "新規構築 ${{ inputs.city_name }}"
+          body: "auto: 新規構築 ${{ inputs.city_name }}"
+          branch: $branch_name
