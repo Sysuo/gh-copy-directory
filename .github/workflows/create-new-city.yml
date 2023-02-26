@@ -59,7 +59,7 @@ jobs:
       # サービス開始日 置換
       - name: replace since
         run: |
-          since=`echo "${{ inputs.since }}" | sed -e "s/\//\\\\\//g"`
+          since=`echo "${{ inputs.since }}" | sed -e "s/\\//\\\\\\\\\\//g"`
           sed -e 's/#since#/$since/' ${{ inputs.city_id }}/profile_3.php > ${{ inputs.city_id }}/profile_4.php
 
       # crypt-key ランダムで生成 (アルファベット・数値のみ)、置換
