@@ -73,6 +73,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_ACTION_TOKEN }}
         run: |
           echo $branch_name
+          git config user.name 'Atsuko Kurosawa'
+          git config user.email 'a-kurosawa@mi-labo.co.jp'
           git checkout -b $branch_name
           git add ./${{ inputs.city_id }}/
           git commit -m "新規構築 ${{ inputs.city_name }}"
