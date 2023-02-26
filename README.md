@@ -1,6 +1,12 @@
 # gh-copy-directory
 Github Action でディレクトリをコピーしてコミット・プッシュ・プルリク作成・マージまでするのをテストするためのリポジトリ
 
+# curl での実行の仕方
+
+```
+curl    -X POST    -H 'Authorization: token xxxxxxxxxx'    -H "Accept: application/vnd.github.v3+json"    https://api.github.com/repos/Sysuo/gh-copy-directory/actions/workflows/create-new-city.yml/dispatches    -d '{"ref":"master", "inputs": { "city_id": "test3-city", "prefecture": "テスト3県", "city_name": "テスト3市", "service_name": "テスト3サービス", "since": "2023/02/27" } }'
+```
+
 # やりたいこと
 
 - template フォルダをコピーして、city-id (引数)にリネーム
