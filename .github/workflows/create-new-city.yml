@@ -59,8 +59,8 @@ jobs:
       # サービス開始日 置換
       - name: replace since
         run: |
-          since=`echo "${{ inputs.since }}" | sed -e "s/\\//\\\\\\\\\\//g"`
-          sed -ie 's/#since#/$since/' ${{ inputs.city_id }}/profile.php
+          service_start_date=`echo "${{ inputs.since }}" | sed -e "s/\\//\\\\\\\\\\//g"`
+          sed -ie 's/#since#/$service_start_date/' ${{ inputs.city_id }}/profile.php
 
       # crypt-key ランダムで生成 (アルファベット・数値のみ)、置換
       - name: create crypt key
@@ -81,7 +81,7 @@ jobs:
         run: |
           copy_right=`echo "${{ inputs.city_id }}" | awk -F '-' '{ for(i=1; i<=NF; i++) {printf toupper(substr($i,1,1)) substr($i,2) " " }} END {print ""}'`
           echo $copy_right
-          sed -e "s/#copy-right#/$copy_right/" ${{ inputs.city_id }}/profile.php
+          sed -ie "s/#copy-right#/$copy_right/" ${{ inputs.city_id }}/profile.php
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
