@@ -55,24 +55,23 @@ jobs:
       # crypt-key ランダムで生成 (アルファベット・数値のみ)、置換
       - name: create crypt key
         run: |
+          crypt_key=cat /dev/urandom | base64 | fold -w 256 | head -n 1 | sed -e 's/[^[0-9a-zA-Z]//g' | fold -w $crypt_key_length | head -n 1
           echo $crypt_key
           sed -e "s/#crypt-key#/$crypt_key/" ${{ inputs.city_id }}/profile_3.php > ${{ inputs.city_id }}/profile_4.php
-        env:
-          crypt_key: cat /dev/urandom | base64 | fold -w 256 | head -n 1 | sed -e 's/[^[0-9a-zA-Z]//g' | fold -w $crypt_key_length | head -n 1
 
       # DBパスワード ランダムで生成 (アルファベット・数値のみ)、置換
       - name: "db-password"
         run: |
+          password=cat /dev/urandom | base64 | fold -w 256 | head -n 1 | sed -e 's/[^[0-9a-zA-Z]//g' | fold -w $password_length | head -n 1
           echo $password
           sed -e "s/#db-password#/$password/" ${{ inputs.city_id }}/profile_4.php > ${{ inputs.city_id }}/profile_5.php
-        env:
-          password: cat /dev/urandom | base64 | fold -w 256 | head -n 1 | sed -e 's/[^[0-9a-zA-Z]//g' | fold -w $password_length | head -n 1
 
       # Copy Right
       - name: copy right
-        run: sed -e "s/#db-password#/$copy_right/" ${{ inputs.city_id }}/profile_5.php > ${{ inputs.city_id }}/profile.php
-        env:
-          copy_right: echo "${{ inputs.city_id }}" | awk -F '-' '{ for(i=1; i<=NF; i++) {printf toupper(substr($i,1,1)) substr($i,2) " " }} END {print ""}'
+        run: |
+          copy_right=echo "${{ inputs.city_id }}" | awk -F '-' '{ for(i=1; i<=NF; i++) {printf toupper(substr($i,1,1)) substr($i,2) " " }} END {print ""}'
+          echo $copy_right
+          sed -e "s/#copy-right#/$copy_right/" ${{ inputs.city_id }}/profile_5.php > ${{ inputs.city_id }}/profile.php
 
       # 後始末
       - name: tear down
