@@ -66,7 +66,7 @@ jobs:
 
       # 後始末
       - name: tear down
-        run: rm profile_1.php profile_2.php profile_3.php profile_4.php
+        run: rm ${{ inputs.city_id }}/profile_1.php ${{ inputs.city_id }}/profile_2.php ${{ inputs.city_id }}/profile_3.php ${{ inputs.city_id }}/profile_4.php
 
       - name: Create new Branch, commit, push
         env:
